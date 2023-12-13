@@ -104,19 +104,19 @@
     }
 
     .h2-bold {
-        @apply text-[24px] font-bold leading-[31.2px];
+        @apply text-[27px] font-bold leading-[31.2px];
     }
 
     .h2-semibold {
-        @apply text-[24px] font-semibold leading-[31.2px];
+        @apply text-[27px] font-semibold leading-[31.2px];
     }
 
     .h3-bold {
-        @apply text-[20px] font-bold leading-[26px];
+        @apply text-[23px] font-bold leading-[26px];
     }
 
     .h3-semibold {
-        @apply text-[20px] font-semibold leading-[24.8px];
+        @apply text-[23px] font-semibold leading-[24.8px];
     }
 
     .base-medium {
@@ -124,7 +124,7 @@
     }
 
     .base-semibold {
-        @apply text-[18px] font-semibold leading-[25.2px];
+        @apply text-[21px] font-semibold leading-[25.2px];
     }
 
     .base-bold {
@@ -132,47 +132,47 @@
     }
 
     .paragraph-regular {
-        @apply text-[16px] font-normal leading-[22.4px];
+        @apply text-[19px] font-normal leading-[22.4px];
     }
 
     .paragraph-medium {
-        @apply text-[16px] font-medium leading-[22.4px];
+        @apply text-[19px] font-medium leading-[22.4px];
     }
 
     .paragraph-semibold {
-        @apply text-[16px] font-semibold leading-[20.8px];
+        @apply text-[19px] font-semibold leading-[20.8px];
     }
 
     .body-regular {
-        @apply text-[14px] font-normal leading-[19.6px];
+        @apply text-[17px] font-normal leading-[19.6px];
     }
 
     .body-medium {
-        @apply text-[14px] font-medium leading-[18.2px];
+        @apply text-[17px] font-medium leading-[18.2px];
     }
 
     .body-semibold {
-        @apply text-[14px] font-semibold leading-[18.2px];
+        @apply text-[17px] font-semibold leading-[18.2px];
     }
 
     .small-regular {
-        @apply text-[12px] font-normal leading-[15.6px];
+        @apply text-[15px] font-normal leading-[15.6px];
     }
 
     .small-medium {
-        @apply text-[12px] font-medium leading-[15.6px];
+        @apply text-[15px] font-medium leading-[15.6px];
     }
 
     .small-semibold {
-        @apply text-[12px] font-semibold leading-[15.6px];
+        @apply text-[15px] font-semibold leading-[15.6px];
     }
 
     .subtle-medium {
-        @apply text-[10px] font-medium leading-[13px] !important;
+        @apply text-[13px] font-medium leading-[13px] !important;
     }
 
     .subtle-regular {
-        @apply text-[10px] font-normal leading-[13px];
+        @apply text-[13px] font-normal leading-[13px];
     }
 
     .placeholder {
