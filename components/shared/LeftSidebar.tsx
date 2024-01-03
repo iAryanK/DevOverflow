@@ -6,8 +6,10 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import { sidebarLinks } from "@/constants";
 import { Button } from "../ui/button";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedOut, useAuth } from "@clerk/nextjs";
+
 const LeftSidebar = () => {
+  const { userId } = useAuth();
   const pathname = usePathname();
 
   return (
@@ -18,11 +20,18 @@ const LeftSidebar = () => {
             (pathname.includes(item.route) && item.route.length > 1) ||
             pathname === item.route;
 
-          // TODO
+          // TODO -> profile/id/page
+          if (item.route === "/profile") {
+            if (userId) {
+              item.route = `${item.route}/${userId}`;
+            } else {
+              return null;
+            }
+          }
 
           return (
             <Link
-              key={item.route}
+              key={item.label}
               href={item.route}
               className={`${
                 isActive
