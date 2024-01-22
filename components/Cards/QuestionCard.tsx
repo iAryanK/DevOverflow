@@ -17,6 +17,7 @@ interface QuestionProps {
     _id: string;
     name: string;
     picture: string;
+    clerkId: string;
   };
   upvotes: string[];
   views: number;
@@ -72,7 +73,7 @@ const QuestionCard = ({
           href={`/profile/${author._id}`}
           isAuthor
         />
-        <div className="flex flex-row gap-3">
+        <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="Upvotes"
