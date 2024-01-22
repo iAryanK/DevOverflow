@@ -30,6 +30,8 @@ export const POST = async (request: Request) => {
 
     const reply = responseData.choices[0].message.content;
 
+    console.log(reply);
+
     return NextResponse.json({ reply });
   } catch (error: any) {
     return NextResponse.json({ error: error.message });

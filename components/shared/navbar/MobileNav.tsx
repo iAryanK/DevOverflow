@@ -72,13 +72,13 @@ const MobileNav = () => {
         <Link href="/" className="flex items-center gap-1">
           <Image
             src="/assets/images/site-logo.svg"
-            alt="DevOverflow"
+            alt="DevCommunity"
             width={23}
             height={23}
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Dev <span className="text-primary-500">Overflow</span>
+            Dev <span className="text-primary-500">Community</span>
           </p>
         </Link>
 
