@@ -79,6 +79,13 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       const aiAnswer = await response.json();
 
+      if (!aiAnswer) {
+        return toast({
+          title: "AI is currently busy! Try again later.",
+          variant: "destructive",
+        });
+      }
+
       // convert plain text to HTML format
       const formattedAnswer = aiAnswer.reply.replace(/\n/g, "<br/>");
 
