@@ -1,7 +1,7 @@
 "use client";
 
 import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
-import { viewQuestion } from "@/lib/actions/interaction.action";
+import { viewBlog, viewQuestion } from "@/lib/actions/interaction.action";
 import {
   downvoteQuestion,
   upvoteQuestion,
@@ -12,6 +12,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { toast } from "../ui/use-toast";
+import { downvoteBlog, upvoteBlog } from "@/lib/actions/blog.action";
 
 interface Props {
   type: string;
@@ -77,6 +78,14 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
+      } else if (type === "Blog") {
+        await upvoteBlog({
+          blogId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       }
 
       return toast({
@@ -102,6 +111,14 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
+      } else if (type === "Blog") {
+        await downvoteBlog({
+          blogId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       }
 
       return toast({
@@ -112,11 +129,18 @@ const Votes = ({
   };
 
   useEffect(() => {
-    viewQuestion({
-      questionId: JSON.parse(itemId),
-      userId: userId ? JSON.parse(userId) : undefined,
-    });
-  }, [itemId, userId, pathname, router]);
+    if (type === "Question") {
+      viewQuestion({
+        questionId: JSON.parse(itemId),
+        userId: userId ? JSON.parse(userId) : undefined,
+      });
+    } else {
+      viewBlog({
+        blogId: JSON.parse(itemId),
+        userId: userId ? JSON.parse(userId) : undefined,
+      });
+    }
+  }, [type, itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">

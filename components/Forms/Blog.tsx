@@ -4,7 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { QuestionsSchema } from "@/lib/validations";
+import { blogsSchema } from "@/lib/validations";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,59 +19,59 @@ import { Input } from "@/components/ui/input";
 import React, { useRef, useState } from "react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-import { EditQuestion, createQuestion } from "@/lib/actions/question.action";
+import { EditQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
+import { createBlog } from "@/lib/actions/blog.action";
 
 interface Props {
   type?: string;
   mongoUserId: string;
-  questionDetails?: string;
+  blogDetails?: string;
 }
 
-const Question = ({ type, mongoUserId, questionDetails }: Props) => {
+const Blog = ({ type, mongoUserId, blogDetails }: Props) => {
   const { mode } = useTheme();
   const editorRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
-  const parsedQuestionDetails =
-    questionDetails && JSON.parse(questionDetails || "");
-  const groupedTags = parsedQuestionDetails?.tags.map((tag: any) => tag.name);
+  const parsedblogDetails = blogDetails && JSON.parse(blogDetails || "");
+  const groupedTags = parsedblogDetails?.tags.map((tag: any) => tag.name);
 
-  const form = useForm<z.infer<typeof QuestionsSchema>>({
-    resolver: zodResolver(QuestionsSchema),
+  const form = useForm<z.infer<typeof blogsSchema>>({
+    resolver: zodResolver(blogsSchema),
     defaultValues: {
-      title: parsedQuestionDetails?.title || "",
-      explanation: parsedQuestionDetails?.content || "",
+      title: parsedblogDetails?.title || "",
+      explanation: parsedblogDetails?.content || "",
       tags: groupedTags || [],
     },
   });
 
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof blogsSchema>) {
     setIsSubmitting(true);
     // console.log(values);
     try {
       if (type === "Edit") {
         await EditQuestion({
-          questionId: parsedQuestionDetails._id,
+          questionId: parsedblogDetails._id,
           title: values.title,
           content: values.explanation,
           path: pathname,
         });
 
-        router.push(`/question/${parsedQuestionDetails._id}`);
+        router.push(`/blogs/${parsedblogDetails._id}`);
       } else {
-        await createQuestion({
+        await createBlog({
           title: values.title,
           content: values.explanation,
           tags: values.tags,
           author: JSON.parse(mongoUserId),
           path: pathname,
         });
-        router.push("/");
+        router.push("/blogs");
       }
     } catch (error) {
     } finally {
@@ -126,7 +126,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
           render={({ field }) => (
             <FormItem className="flex w-full flex-col">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Question Title <span className="text-primary-500">*</span>
+                Blog Title <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
                 <Input
@@ -135,8 +135,8 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Be specific and imagine you&apos;re asking a question to another
-                person.
+                Write a catchy title for your blog that graps the users
+                attention.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
@@ -149,7 +149,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
           render={({ field }) => (
             <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Detailed explanation of your problem{" "}
+                Draft your blog here.{" "}
                 <span className="text-primary-500">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
@@ -161,9 +161,9 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                   }
                   onBlur={field.onBlur}
                   onEditorChange={(content) => field.onChange(content)}
-                  initialValue={parsedQuestionDetails?.content || ""}
+                  initialValue={parsedblogDetails?.content || ""}
                   init={{
-                    height: 350,
+                    height: 700,
                     menubar: false,
                     plugins: [
                       "advlist",
@@ -194,8 +194,8 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Introduce the problem and expand on what you put in the title.
-                Minimum 20 characters.
+                Write your blog article here. Try to make it more beautifully
+                aligned for the readers.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
@@ -247,8 +247,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                 </>
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Add up to 3 tags to describe what your question is about. Start
-                typing to see suggestions.
+                Add up to 3 tags to describe what your blog is about.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
@@ -262,7 +261,7 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
           {isSubmitting ? (
             <>{type === "Edit" ? "Editing..." : "Posting..."}</>
           ) : (
-            <>{type === "Edit" ? "Edit Question" : "Ask a Question"}</>
+            <>{type === "Edit" ? "Edit Blog" : "Post the blog"}</>
           )}
         </Button>
       </form>
@@ -270,4 +269,4 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
   );
 };
 
-export default Question;
+export default Blog;

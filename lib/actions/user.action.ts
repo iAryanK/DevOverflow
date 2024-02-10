@@ -19,6 +19,7 @@ import Tag from "@/database/tag.model";
 import Answer from "@/database/answer.model";
 import { BadgeCriteriaType } from "@/types";
 import { assignBadges } from "../utils";
+import Blog from "@/database/blog.model";
 
 export async function getUserById(params: any) {
   try {
@@ -376,6 +377,32 @@ export async function getUserAnswers(params: GetUserStatsParams) {
     const isNextAnswers = totalAnswers > skipAmount + userAnswers.length;
 
     return { totalAnswers, answers: userAnswers, isNextAnswers };
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export async function getUserBlogs(params: GetUserStatsParams) {
+  try {
+    connectToDatabase();
+
+    const { userId, page = 1, pageSize = 10 } = params;
+
+    const skipAmount = (page - 1) * pageSize;
+
+    const totalBlogs = await Blog.countDocuments({ author: userId });
+
+    const userBlogs = await Blog.find({ author: userId })
+      .sort({ createdAt: -1, views: -1, upvotes: -1 })
+      .skip(skipAmount)
+      .limit(pageSize)
+      .populate("tags", "_id name")
+      .populate("author", "_id clerkId name picture");
+
+    const isNextBlogs = totalBlogs > skipAmount + userBlogs.length;
+
+    return { totalBlogs, blogs: userBlogs, isNextBlogs };
   } catch (error) {
     console.log(error);
     throw error;

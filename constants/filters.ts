@@ -33,6 +33,13 @@ export const HomePageFilters = [
   { name: "Unanswered", value: "unanswered" },
 ];
 
+export const BlogPageFilters = [
+  { name: "Newest", value: "newest" },
+  { name: "Recommended", value: "recommended" },
+  { name: "Frequent", value: "frequent" },
+  { name: "Unanswered", value: "unanswered" },
+];
+
 export const GlobalSearchFilters = [
   { name: "Question", value: "question" },
   { name: "Answer", value: "answer" },

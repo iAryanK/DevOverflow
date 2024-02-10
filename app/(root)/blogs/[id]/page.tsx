@@ -1,10 +1,8 @@
-import Answer from "@/components/Forms/Answer";
-import AllAnswers from "@/components/shared/AllAnswers";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
 import Votes from "@/components/shared/Votes";
-import { getQuestionById } from "@/lib/actions/question.action";
+import { getBlogById } from "@/lib/actions/blog.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
@@ -13,7 +11,7 @@ import Link from "next/link";
 import React from "react";
 
 const Page = async ({ params, searchParams }: any) => {
-  const result = await getQuestionById({ questionId: params.id });
+  const result = await getBlogById({ blogId: params.id });
 
   const { userId: clerkId } = auth();
 
@@ -45,7 +43,7 @@ const Page = async ({ params, searchParams }: any) => {
 
           <div className="flex justify-end">
             <Votes
-              type="Question"
+              type="Blog"
               itemId={JSON.stringify(result._id)}
               userId={JSON.stringify(mongoUser._id)}
               upvotes={result.upvotes.length}
@@ -69,15 +67,15 @@ const Page = async ({ params, searchParams }: any) => {
         <Metric
           imgUrl="/assets/icons/clock.svg"
           alt="clock icon"
-          value={` asked ${getTimestamp(result.createdAt)}`}
+          value={` created ${getTimestamp(result.createdAt)}`}
           title=" "
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="Message"
-          value={formatAndDivideNumber(result.answers.length)}
-          title=" Answers"
+          value={formatAndDivideNumber(result.comments.length)}
+          title=" Comments"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric
@@ -101,20 +99,6 @@ const Page = async ({ params, searchParams }: any) => {
           />
         ))}
       </div>
-
-      <AllAnswers
-        questionId={result._id}
-        userId={mongoUser._id}
-        totalAnswers={result.answers.length}
-        page={searchParams?.page}
-        filter={searchParams?.filter}
-      />
-
-      <Answer
-        question={result.content}
-        questionId={JSON.stringify(result._id)}
-        authorId={JSON.stringify(mongoUser._id)}
-      />
     </>
   );
 };

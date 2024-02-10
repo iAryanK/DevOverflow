@@ -6,7 +6,7 @@ import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { SignedIn } from "@clerk/nextjs";
 import EditDeleteAction from "../shared/EditDeleteAction";
 
-interface QuestionProps {
+interface BlogProps {
   _id: string;
   title: string;
   tags: {
@@ -19,23 +19,23 @@ interface QuestionProps {
     picture: string;
     clerkId: string;
   };
-  upvotes: string[];
+  upvotes: number;
   views: number;
-  answers: Array<Object>;
+  comments: number;
   createdAt: Date;
   clerkId?: string | null;
 }
-const QuestionCard = ({
+const BlogCard = ({
   _id,
   title,
   tags,
-  author,
-  upvotes,
   views,
-  answers,
+  upvotes,
+  author,
+  comments,
   createdAt,
   clerkId,
-}: QuestionProps) => {
+}: BlogProps) => {
   const showActionButtons = clerkId && clerkId === author.clerkId;
   return (
     <div className="card-wrapper rounded-[10px] p-9 sm:px-11">
@@ -44,8 +44,8 @@ const QuestionCard = ({
           <span className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden">
             {getTimestamp(createdAt)}
           </span>
-          <Link href={`/question/${_id}`}>
-            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-3 flex-1">
+          <Link href={`/blogs/${_id}`}>
+            <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-2 flex-1">
               {title}
             </h3>
           </Link>
@@ -53,7 +53,7 @@ const QuestionCard = ({
 
         <SignedIn>
           {showActionButtons && (
-            <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
+            <EditDeleteAction type="Blog" itemId={JSON.stringify(_id)} />
           )}
         </SignedIn>
       </div>
@@ -77,15 +77,15 @@ const QuestionCard = ({
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="Upvotes"
-            value={formatAndDivideNumber(upvotes.length)}
+            value={formatAndDivideNumber(upvotes)}
             title=" Votes"
             textStyles="small-medium text-dark400_light800"
           />
           <Metric
             imgUrl="/assets/icons/message.svg"
             alt="Message"
-            value={formatAndDivideNumber(answers.length)}
-            title=" Answers"
+            value={formatAndDivideNumber(comments)}
+            title=" Comments"
             textStyles="small-medium text-dark400_light800"
           />
           <Metric
@@ -101,4 +101,4 @@ const QuestionCard = ({
   );
 };
 
-export default QuestionCard;
+export default BlogCard;

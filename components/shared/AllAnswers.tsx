@@ -10,6 +10,7 @@ import Votes from "./Votes";
 import Pagination from "./Pagination";
 
 interface Props {
+  type?: string;
   questionId: string;
   userId: string;
   totalAnswers: number;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const AllAnswers = async ({
+  type,
   questionId,
   userId,
   totalAnswers,
@@ -33,7 +35,9 @@ const AllAnswers = async ({
   return (
     <div className="mt-11">
       <div className="flex items-center justify-between">
-        <h3 className="primary-text-gradient">{totalAnswers} Answers</h3>
+        <h3 className="primary-text-gradient">
+          {totalAnswers} {type === "BlogComment" ? "Comments" : "Answers"}
+        </h3>
 
         <Filter filters={AnswerFilters} />
       </div>

@@ -35,7 +35,9 @@ const ParseHTML = ({ data }: Props) => {
     Prism.highlightAll();
   }, []);
 
-  return <div className="markdown w-full min-w-full">{parse(data)}</div>;
+  return (
+    <div className="markdown w-full min-w-full text-justify">{parse(data)}</div>
+  );
 };
 
 export default ParseHTML;

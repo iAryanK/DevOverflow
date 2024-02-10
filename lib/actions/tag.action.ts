@@ -110,6 +110,22 @@ export async function getQuestionByTagId(params: GetQuestionsByTagIdParams) {
         { path: "author", model: User, select: "_id clerkId name picture" },
       ],
     });
+    // .populate({
+    //   path: "blogs",
+    //   model: Blog,
+    //   match: searchQuery
+    //     ? { title: { $regex: searchQuery, $options: "i" } }
+    //     : {},
+    //   options: {
+    //     sort: { createdAt: -1 },
+    //     skip: skipAmount,
+    //     limit: pageSize + 1,
+    //   },
+    //   populate: [
+    //     { path: "tags", model: Tag, select: "_id name" },
+    //     { path: "author", model: User, select: "_id clerkId name picture" },
+    //   ],
+    // });
 
     if (!tag) throw new Error("user not found");
 

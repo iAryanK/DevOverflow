@@ -11,6 +11,7 @@ import ProfileLink from "@/components/shared/ProfileLink";
 import Stats from "@/components/shared/Stats";
 import QuestionTab from "@/components/shared/QuestionTab";
 import AnswerTab from "@/components/shared/AnswerTab";
+import BlogTab from "@/components/shared/BlogTab";
 
 const Page = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
@@ -94,6 +95,9 @@ const Page = async ({ params, searchParams }: URLProps) => {
             <TabsTrigger value="answers" className="tab">
               Answers
             </TabsTrigger>
+            <TabsTrigger value="blogs" className="tab">
+              Blogs
+            </TabsTrigger>
           </TabsList>
           <TabsContent
             value="top-posts"
@@ -107,6 +111,13 @@ const Page = async ({ params, searchParams }: URLProps) => {
           </TabsContent>
           <TabsContent value="answers" className="flex w-full flex-col gap-6">
             <AnswerTab
+              searchParams={searchParams}
+              userId={userInfo.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
+          <TabsContent value="blogs" className="flex w-full flex-col gap-6">
+            <BlogTab
               searchParams={searchParams}
               userId={userInfo.user._id}
               clerkId={clerkId}

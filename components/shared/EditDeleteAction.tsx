@@ -1,6 +1,7 @@
 "use client";
 
 import { deleteAnswer } from "@/lib/actions/answer.action";
+import { deleteBlog } from "@/lib/actions/blog.action";
 import { deleteQuestion } from "@/lib/actions/question.action";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,7 +17,11 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
   const router = useRouter();
 
   const handleEdit = () => {
-    router.push(`/question/edit/${JSON.parse(itemId)}`);
+    if (type === "Question")
+      router.push(`/question/edit/${JSON.parse(itemId)}`);
+    else if (type === "Blog") {
+      router.push(`/blogs/edit/${JSON.parse(itemId)}`);
+    }
   };
 
   const handleDelete = async () => {
@@ -26,12 +31,14 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
     } else if (type === "Answer") {
       // delete answer
       await deleteAnswer({ answerId: JSON.parse(itemId), path: pathname });
+    } else if (type === "Blog") {
+      await deleteBlog({ blogId: JSON.parse(itemId), path: pathname });
     }
   };
 
   return (
     <div className="flex items-center justify-end gap-3 max-sm:w-full">
-      {type === "Question" && (
+      {(type === "Question" || type === "Blog") && (
         <Image
           src="/assets/icons/edit.svg"
           alt="edit"

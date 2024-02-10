@@ -158,3 +158,42 @@ export interface GetUserStatsParams {
 export interface DeleteUserParams {
   clerkId: string;
 }
+
+// ------------------------
+
+export interface GetBlogsParams {
+  page?: number;
+  pageSize?: number;
+  searchQuery?: string;
+  filter?: string;
+}
+
+export interface CreateBlogParams {
+  title: string;
+  content: string;
+  tags: string[];
+  author: Schema.Types.ObjectId | IUser;
+  path: string;
+}
+
+export interface GetBlogByIdParams {
+  blogId: string;
+}
+
+export interface BlogVoteParams {
+  blogId: string;
+  userId: string;
+  hasupVoted: boolean;
+  hasdownVoted: boolean;
+  path: string;
+}
+
+export interface ViewBlogParams {
+  blogId: string;
+  userId: string | undefined;
+}
+
+export interface DeleteBlogParams {
+  blogId: string;
+  path: string;
+}
