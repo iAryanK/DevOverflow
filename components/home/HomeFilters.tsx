@@ -1,6 +1,6 @@
 "use client";
 
-import { HomePageFilters } from "@/constants/filters";
+import { BlogPageFilters } from "@/constants/filters";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -35,7 +35,7 @@ const HomeFilters = () => {
 
   return (
     <div className="mt-10 hidden flex-wrap gap-3 md:flex">
-      {HomePageFilters.map((item) => (
+      {BlogPageFilters.map((item) => (
         <Button
           key={item.value}
           onClick={() => {}}

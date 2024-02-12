@@ -147,7 +147,7 @@ export async function upvoteBlog(params: BlogVoteParams) {
       updateQuery = { $pull: { upvotes: userId } };
     } else if (hasdownVoted) {
       updateQuery = {
-        $pull: { donwvotes: userId },
+        $pull: { downvotes: userId },
         $push: { upvotes: userId },
       };
     } else {
