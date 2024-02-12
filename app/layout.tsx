@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
+  openGraph: {
+    images:
+      "https://github.com/iAryanK/DevOverflow/blob/051_blog/app/opengraph-image.png?raw=true",
+  },
 };
 
 export default function RootLayout({
