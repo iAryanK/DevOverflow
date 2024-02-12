@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     images:
-      "https://github.com/iAryanK/DevOverflow/blob/051_blog/app/opengraph-image.png?raw=true",
+      "https://raw.githubusercontent.com/iAryanK/DevOverflow/051_blog/app/opengraph-image.png",
   },
 };
 
