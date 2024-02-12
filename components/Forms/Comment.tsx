@@ -72,7 +72,7 @@ const Comment = ({ blogId, authorId }: Props) => {
                   <Input
                     type="text"
                     placeholder="Comment..."
-                    className="no-focus bg-transparent  text-white outline-none"
+                    className="no-focus text-dark400_light700  bg-transparent outline-none"
                     {...field}
                   />
                 </FormControl>
