@@ -12,7 +12,7 @@ import { getBlogs } from "@/lib/actions/blog.action";
 import BlogCard from "@/components/Cards/BlogCard";
 
 export const metadata: Metadata = {
-  title: "Blogs | DevCommunity",
+  title: "Blogs | DevForces",
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {
@@ -45,7 +45,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
-        <h1 className="h1-bold text-dark100_light900">Community Blogs</h1>
+        <h1 className="h1-bold text-dark100_light900">All Blogs</h1>
 
         <Link href="/write-blog" className="flex justify-end max-sm:w-full">
           <Button className="primary-gradient min-h-[46px] px-4 py-3 text-light-900">
@@ -81,7 +81,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
               views={blog.views}
               upvotes={blog.upvotes.length}
               author={blog.author}
-              comments={blog.comments}
+              comments={blog.comments.length}
               createdAt={blog.createdAt}
             />
           ))

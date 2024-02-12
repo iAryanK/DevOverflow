@@ -197,3 +197,25 @@ export interface DeleteBlogParams {
   blogId: string;
   path: string;
 }
+
+export interface CreateCommentParams {
+  content: string;
+  author: string; // User ID
+  blog: string; // blog ID
+  path: string;
+}
+
+export interface GetCommentsParams {
+  blogId: string;
+  sortBy?: string;
+  page?: number;
+  pageSize?: number;
+}
+
+export interface CommentVoteParams {
+  commentId: string;
+  userId: string;
+  hasupVoted: boolean;
+  hasdownVoted: boolean;
+  path: string;
+}

@@ -1,3 +1,5 @@
+import Comment from "@/components/Forms/Comment";
+import AllComments from "@/components/shared/AllComments";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
@@ -99,6 +101,20 @@ const Page = async ({ params, searchParams }: any) => {
           />
         ))}
       </div>
+
+      <Comment
+        blogId={JSON.stringify(result._id)}
+        authorId={JSON.stringify(mongoUser._id)}
+      />
+
+      <AllComments
+        type="BlogComment"
+        blogId={result._id}
+        userId={mongoUser._id}
+        totalComments={result.comments.length}
+        page={searchParams?.page}
+        filter={searchParams?.filter}
+      />
     </>
   );
 };

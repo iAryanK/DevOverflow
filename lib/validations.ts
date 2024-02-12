@@ -23,3 +23,7 @@ export const blogsSchema = z.object({
   explanation: z.string().min(150),
   tags: z.array(z.string().min(1).max(15)).min(1).max(3),
 });
+
+export const CommentSchema = z.object({
+  comment: z.string().min(3),
+});

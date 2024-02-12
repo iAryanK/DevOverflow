@@ -13,6 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { toast } from "../ui/use-toast";
 import { downvoteBlog, upvoteBlog } from "@/lib/actions/blog.action";
+import { downvoteComment, upvoteComment } from "@/lib/actions/comment.action";
 
 interface Props {
   type: string;
@@ -86,6 +87,14 @@ const Votes = ({
           hasdownVoted,
           path: pathname,
         });
+      } else if (type === "Comment") {
+        await upvoteComment({
+          commentId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
       }
 
       return toast({
@@ -114,6 +123,14 @@ const Votes = ({
       } else if (type === "Blog") {
         await downvoteBlog({
           blogId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasupVoted,
+          hasdownVoted,
+          path: pathname,
+        });
+      } else if (type === "Comment") {
+        await downvoteComment({
+          commentId: JSON.parse(itemId),
           userId: JSON.parse(userId),
           hasupVoted,
           hasdownVoted,
