@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/assets/images/site-logo.svg",
   },
+  metadataBase: new URL("https://raw.githubusercontent.com"),
   openGraph: {
-    images:
-      "https://raw.githubusercontent.com/iAryanK/DevOverflow/051_blog/app/opengraph-image.png",
+    images: "/iAryanK/DevOverflow/051_blog/app/opengraph-image.png",
   },
 };
 

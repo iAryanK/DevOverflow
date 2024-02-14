@@ -67,7 +67,7 @@ const MobileNav = () => {
 
       <SheetContent
         side="left"
-        className="background-light900_dark200 border-none"
+        className="background-light900_dark200 overflow-y-scroll border-none"
       >
         <Link href="/" className="flex items-center gap-1">
           <Image
@@ -78,7 +78,7 @@ const MobileNav = () => {
           />
 
           <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Dev <span className="text-primary-500">Community</span>
+            Dev <span className="text-primary-500">Forces</span>
           </p>
         </Link>
 
