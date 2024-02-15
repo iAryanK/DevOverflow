@@ -10,6 +10,7 @@ import {
 import Tag, { ITag } from "@/database/tag.model";
 import { FilterQuery } from "mongoose";
 import Question from "@/database/question.model";
+import Interaction from "@/database/interaction.model";
 
 export async function GetTopInteractedTags(params: GetTopInteractedTagsParams) {
   try {
@@ -22,13 +23,33 @@ export async function GetTopInteractedTags(params: GetTopInteractedTagsParams) {
     if (!user) throw new Error("User not found");
 
     // find interaction for the user and group by tags
-    // interaction...
+    const interactionAggregate = await Interaction.aggregate([
+      { $match: { user: userId } }, // Match interactions of the user
+      { $unwind: "$tags" }, // Unwind the tags array
+      { $group: { _id: "$tags", count: { $sum: 1 } } }, // Group by tags and count interactions
+      {
+        $lookup: {
+          from: "tags",
+          localField: "_id",
+          foreignField: "_id",
+          as: "tagInfo",
+        },
+      }, // Lookup to fetch tag information
+      { $unwind: "$tagInfo" }, // Unwind the tagInfo array
+      { $addFields: { tagName: "$tagInfo.name" } }, // Add a new field for tag name
+      { $project: { _id: 1, tagName: 1, count: 1 } }, // Project only tagName and count
+      { $sort: { count: -1 } }, // Sort by count in descending order
+      { $limit: 3 }, // Limit the result to top three tags
+    ]);
 
-    return [
-      { _id: "1", name: "tag1" },
-      { _id: "2", name: "tag2" },
-      { _id: "3", name: "tag3" },
-    ];
+    // Map the result to get tag ids and tagName
+    const topTags = interactionAggregate.map((tag) => ({
+      _id: tag._id,
+      tag: tag._id,
+      name: tag.tagName,
+    }));
+
+    return topTags;
   } catch (error) {
     console.log(error);
     throw error;
