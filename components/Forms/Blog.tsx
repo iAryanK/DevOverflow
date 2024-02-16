@@ -135,8 +135,7 @@ const Blog = ({ type, mongoUserId, blogDetails }: Props) => {
                 />
               </FormControl>
               <FormDescription className="body-regular mt-2.5 text-light-500">
-                Write a catchy title for your blog that graps the users
-                attention.
+                Write a catchy title for your blog that grabs user attention.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
@@ -166,6 +165,9 @@ const Blog = ({ type, mongoUserId, blogDetails }: Props) => {
                     height: 700,
                     menubar: false,
                     plugins: [
+                      "accordion",
+                      "link autolink",
+                      "emoticons",
                       "advlist",
                       "autolink",
                       "lists",
@@ -181,10 +183,11 @@ const Blog = ({ type, mongoUserId, blogDetails }: Props) => {
                       "insertdatetime",
                       "media",
                       "table",
+                      "fullscreen",
                     ],
                     toolbar:
-                      "undo redo | blocks | " +
-                      "codesample | image | bold italic forecolor | alignleft aligncenter |" +
+                      "fullscreen undo redo | link accordion emoticons blocks | " +
+                      "codesample image media | bold italic forecolor | alignleft aligncenter |" +
                       "alignright alignjustify | bullist numlist outdent indent | " +
                       "removeformat",
                     content_style: "body { font-family:Inter; font-size:18px }",

@@ -166,6 +166,9 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                     height: 350,
                     menubar: false,
                     plugins: [
+                      "accordion",
+                      "link autolink",
+                      "emoticons",
                       "advlist",
                       "autolink",
                       "lists",
@@ -181,10 +184,11 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                       "insertdatetime",
                       "media",
                       "table",
+                      "fullscreen",
                     ],
                     toolbar:
-                      "undo redo | blocks | " +
-                      "codesample | image | bold italic forecolor | alignleft aligncenter |" +
+                      "fullscreen undo redo | link accordion emoticons blocks | " +
+                      "codesample image media | bold italic forecolor | alignleft aligncenter |" +
                       "alignright alignjustify | bullist numlist outdent indent | " +
                       "removeformat",
                     content_style: "body { font-family:Inter; font-size:18px }",
