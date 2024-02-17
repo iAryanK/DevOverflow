@@ -219,3 +219,10 @@ export interface CommentVoteParams {
   hasdownVoted: boolean;
   path: string;
 }
+
+export interface EditBlogParams {
+  blogId: string;
+  title: string;
+  content: string;
+  path: string;
+}

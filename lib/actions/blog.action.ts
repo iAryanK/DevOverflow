@@ -6,6 +6,7 @@ import {
   BlogVoteParams,
   CreateBlogParams,
   DeleteBlogParams,
+  EditBlogParams,
   GetBlogByIdParams,
   GetBlogsParams,
 } from "./shared.types";
@@ -231,6 +232,29 @@ export async function deleteBlog(params: DeleteBlogParams) {
     // await Answer.deleteMany({ question: questionId });
     await Interaction.deleteMany({ blog: blogId });
     await Tag.updateMany({ blogs: blogId }, { $pull: { blogs: blogId } });
+
+    revalidatePath(path);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function EditBlog(params: EditBlogParams) {
+  try {
+    connectToDatabase();
+
+    const { blogId, title, content, path } = params;
+
+    const blog = await Blog.findById(blogId).populate("tags");
+
+    if (!blog) {
+      throw new Error("blog not found");
+    }
+
+    blog.title = title;
+    blog.content = content;
+
+    await blog.save();
 
     revalidatePath(path);
   } catch (error) {

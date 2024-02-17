@@ -19,10 +19,9 @@ import { Input } from "@/components/ui/input";
 import React, { useRef, useState } from "react";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
-import { EditQuestion } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeProvider";
-import { createBlog } from "@/lib/actions/blog.action";
+import { EditBlog, createBlog } from "@/lib/actions/blog.action";
 
 interface Props {
   type?: string;
@@ -55,8 +54,8 @@ const Blog = ({ type, mongoUserId, blogDetails }: Props) => {
     // console.log(values);
     try {
       if (type === "Edit") {
-        await EditQuestion({
-          questionId: parsedblogDetails._id,
+        await EditBlog({
+          blogId: parsedblogDetails._id,
           title: values.title,
           content: values.explanation,
           path: pathname,
@@ -184,12 +183,12 @@ const Blog = ({ type, mongoUserId, blogDetails }: Props) => {
                       "media",
                       "table",
                       "fullscreen",
+                      "code",
                     ],
                     toolbar:
                       "fullscreen undo redo | link accordion emoticons blocks | " +
-                      "codesample image media | bold italic forecolor | alignleft aligncenter |" +
-                      "alignright alignjustify | bullist numlist outdent indent | " +
-                      "removeformat",
+                      "codesample image media | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | " +
+                      "code removeformat",
                     content_style: "body { font-family:Inter; font-size:18px }",
                     skin: mode === "dark" ? "oxide-dark" : "oxide",
                     content_css: mode === "dark" ? "dark" : "light",

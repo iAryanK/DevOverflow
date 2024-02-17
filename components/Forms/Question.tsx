@@ -185,12 +185,12 @@ const Question = ({ type, mongoUserId, questionDetails }: Props) => {
                       "media",
                       "table",
                       "fullscreen",
+                      "code",
                     ],
                     toolbar:
                       "fullscreen undo redo | link accordion emoticons blocks | " +
-                      "codesample image media | bold italic forecolor | alignleft aligncenter |" +
-                      "alignright alignjustify | bullist numlist outdent indent | " +
-                      "removeformat",
+                      "codesample image media | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | " +
+                      "code removeformat",
                     content_style: "body { font-family:Inter; font-size:18px }",
                     skin: mode === "dark" ? "oxide-dark" : "oxide",
                     content_css: mode === "dark" ? "dark" : "light",
