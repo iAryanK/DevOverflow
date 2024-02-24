@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import { Input } from "../ui/input";
 import { createComment } from "@/lib/actions/comment.action";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   blogId: string;
@@ -33,6 +34,13 @@ const Comment = ({ blogId, authorId }: Props) => {
   });
 
   const handleCreateComment = async (values: z.infer<typeof CommentSchema>) => {
+    if (!authorId) {
+      return toast({
+        title: "Please log in",
+        description: "You must be logged in to perform this action",
+      });
+    }
+
     setIsSubmitting(true);
     try {
       await createComment({

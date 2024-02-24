@@ -40,8 +40,15 @@ const Votes = ({
   const router = useRouter();
 
   const handleSave = async () => {
+    if (!userId) {
+      return toast({
+        title: "Please log in",
+        description: "You must be logged in to perform this action",
+      });
+    }
+
     await toggleSaveQuestion({
-      userId: JSON.parse(userId),
+      userId: userId ? JSON.parse(userId) : undefined,
       questionId: JSON.parse(itemId),
       path: pathname,
     });
@@ -146,6 +153,8 @@ const Votes = ({
   };
 
   useEffect(() => {
+    if (!userId) return;
+
     if (type === "Question") {
       viewQuestion({
         questionId: JSON.parse(itemId),
@@ -192,7 +201,7 @@ const Votes = ({
             }
             width={18}
             height={18}
-            alt="donwvotes"
+            alt="downvotes"
             className="cursor-pointer"
             onClick={() => handleVote("downvote")}
           />
