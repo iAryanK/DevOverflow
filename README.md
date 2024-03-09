@@ -18,9 +18,9 @@
 
 ## <a name="introduction">🤖 Introduction</a>
 
-DevForces, a Next.JS 14 Full Stack application, is a community driven platform that enables us to ask questions, get answered by others and answer other's questions as well.It also provides us the facility to write beautiful blog articles and post it on DevForces.
+DevForces, a Next.JS 14 Full Stack application, is a community driven platform that enables us to ask questions, get answered by others and answer other's questions as well. It also provides us the facility to write beautiful blog articles and post it on DevForces.
 
-This application is inspired from the application DevOverflow by javascriptmastery, who helped me create this mega project with highly detailed features.
+This peace of work is inspired from the application DevOverflow by javascriptmastery, who helped me create this mega project with highly detailed features.
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
@@ -188,7 +188,7 @@ I set up a development environment on my VS Code by setting up tailwind CSS, sha
 5️⃣ Backend for various functionalities are created using server actions.
 6️⃣ Various other features including pagination system & views count are also enabled.
 7️⃣ User can also add media to their posts.
-8️⃣ Finally, the app is deployed on <a>devforces.tech</a>
+8️⃣ Finally, the app is deployed on [devforces.tech](https://devforces.tech/)
 
 ```
 
