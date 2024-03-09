@@ -188,7 +188,7 @@ I set up a development environment on my VS Code by setting up tailwind CSS, sha
 5️⃣ Backend for various functionalities are created using server actions.
 6️⃣ Various other features including pagination system & views count are also enabled.
 7️⃣ User can also add media to their posts.
-8️⃣ Finally, the app is deployed on [devforces.tech](https://devforces.tech/)
+8️⃣ Finally, the app is deployed on devforces.tech
 
 ```
 
