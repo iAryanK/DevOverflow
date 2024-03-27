@@ -68,7 +68,7 @@ const BlogCard = ({
           imgUrl={author.picture}
           alt="user"
           value={author.name}
-          title={` - asked ${getTimestamp(createdAt)}`}
+          title={` - created ${getTimestamp(createdAt)}`}
           textStyles="body-medium text-dark400_light700"
           href={`/profile/${author.clerkId}`}
           isAuthor

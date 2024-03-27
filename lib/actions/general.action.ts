@@ -6,8 +6,9 @@ import { SearchParams } from "./shared.types";
 import User from "@/database/user.model";
 import Answer from "@/database/answer.model";
 import Tag from "@/database/tag.model";
+import Blog from "@/database/blog.model";
 
-const searchableTypes = ["question", "answer", "user", "tags"];
+const searchableTypes = ["question", "answer", "blog", "user", "tags"];
 
 export async function globalSearch(params: SearchParams) {
   try {
@@ -24,6 +25,7 @@ export async function globalSearch(params: SearchParams) {
       { model: User, searchField: "name", type: "user" },
       { model: Answer, searchField: "content", type: "answer" },
       { model: Tag, searchField: "name", type: "tag" },
+      { model: Blog, searchField: "title", type: "blog" },
     ];
 
     const typeLower = type?.toLowerCase();

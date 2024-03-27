@@ -7,7 +7,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import GlobalResult from "./GlobalResult";
 
-const GlobalSearch = () => {
+const GlobalSearch = ({ className }: { className?: string }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -66,7 +66,7 @@ const GlobalSearch = () => {
 
   return (
     <div
-      className="relative w-full max-w-[600px] max-lg:hidden"
+      className={`relative w-full max-w-[600px] ${className}`}
       ref={searchContainerRef}
     >
       <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4">

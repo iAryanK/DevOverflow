@@ -21,7 +21,7 @@ const Navbar = () => {
           Dev <span className="text-primary-500">Forces</span>
         </p>
       </Link>
-      <GlobalSearch />
+      <GlobalSearch className="max-lg:hidden" />
       <div className="flex-between gap-5">
         <Theme />
         <SignedIn>
