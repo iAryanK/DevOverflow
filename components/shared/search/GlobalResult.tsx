@@ -14,6 +14,7 @@ const GlobalResult = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState([
     { type: "question", id: 1, title: "nextjs" },
+    { type: "blogs", id: 1, title: "nextjs" },
     { type: "tag", id: 1, title: "reactjs" },
     { type: "user", id: 1, title: "aryan" },
   ]);
@@ -50,6 +51,8 @@ const GlobalResult = () => {
         return `/question/${id}`;
       case "answer":
         return `/question/${id}`;
+      case "blog":
+        return `/blogs/${id}`;
       case "user":
         return `/profile/${id}`;
       case "tag":
